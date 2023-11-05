@@ -11,15 +11,9 @@ int main() {
 
     int len = sizeof(number) * 8;
 
-    int bit_sum = 0, bit;
-
     printf("Двоичное представление чисала %d: ", number);
     while (len > 0) {
-        bit = (number >> (len - 1)) & 1;
-
-        if ((bit_sum += bit) != 0) {
-            printf("%d", bit);
-        }
+        printf("%d", (number >> (len - 1)) & 1);
         len--;
     }
 
