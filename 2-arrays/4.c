@@ -7,7 +7,7 @@ int main() {
     scanf("%d", &N);
 
     if (N < 1 || N > 1000) {
-        printf("Ошибка! Чило должно быть в промежутке: [1:1000]\n");
+        printf("Ошибка! Чиcло должно быть в промежутке: [1:1000]\n");
     } else {
         int matrix[S][S];
         int top = 0, right = N - 1, bottom = N - 1, left = 0, val = 0;
