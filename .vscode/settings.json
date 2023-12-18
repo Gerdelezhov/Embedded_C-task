@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "directory.h": "c",
+        "typeinfo": "c"
+    }
+}
