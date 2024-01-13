@@ -1,0 +1,1 @@
+gcc -o app -O0 -g3 -fno-stack-protector -no-pie main.c
