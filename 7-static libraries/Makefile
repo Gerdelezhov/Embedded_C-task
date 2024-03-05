@@ -22,19 +22,15 @@ LIBTESTBIN = $(BINDIR)/calc
 
 all: DIR $(LIBTESTBIN) $(APP)
 
-# Main executable file
 $(APP): $(MAIN) $(LIBDIR)/$(LIBNAME)
 	$(CC) $(CFLAGS) $(MAIN) -L$(LIBDIR) $(LIBFLAG) -o $@
 
-# Test executable file for the library
 $(LIBTESTBIN): $(LIBTESTSRC) $(LIBDIR)/$(LIBNAME)
 	$(CC) $(CFLAGS) $< -L$(LIBDIR) $(LIBFLAG) -o $@
 
-# Library
 $(LIBDIR)/$(LIBNAME): $(LIBOBJ)
 	ar rcs $@ $^
 
-# Pattern rule to compile source files into object files
 $(OBJDIR)/%.o: $(SRCLIBDIR)/%.c $(INCAPP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
