@@ -61,27 +61,22 @@ int main() {
 
     srand(time(NULL));
 
-    // Initialize shops with random goods
     for (int i = 0; i < NUM_SHOPS; i++) {
         shops[i] = (rand() % (MAX_GOODS - MIN_GOODS + 1)) + MIN_GOODS;
     }
 
-    // Create customers
     int customer_ids[NUM_CUSTOMERS];
     for (int i = 0; i < NUM_CUSTOMERS; i++) {
         customer_ids[i] = i;
         pthread_create(&customers[i], NULL, customer, &customer_ids[i]);
     }
 
-    // Create loader thread
     pthread_create(&loader_thread, NULL, loader, NULL);
 
-    // Join customers
     for (int i = 0; i < NUM_CUSTOMERS; i++) {
         pthread_join(customers[i], NULL);
     }
 
-    // Cancel loader thread
     pthread_cancel(loader_thread);
 
     return 0;
