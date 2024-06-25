@@ -1,25 +1,14 @@
-SERVER = server
-CLIENT = client
-
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -Werror
 
-SERVER_SRCS = server.c
-CLIENT_SRCS = client.c
+SRC_FILES = client.c server.c
+EXECUTABLES = $(SRC_FILES:.c=)
 
-SERVER_OBJS = $(SERVER_SRCS:.c=.o)
-CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
+all: $(EXECUTABLES)
 
-all: $(SERVER) $(CLIENT)
-
-$(SERVER): $(SERVER_OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
-
-$(CLIENT): $(CLIENT_OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+%: %.c
+	clang-format -style="{BasedOnStyle: Google, IndentWidth: 4}" -i $<
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f $(SERVER) $(CLIENT) *.o
-
-style:
-	clang-format -style=Google -i *.c
+	rm -f $(EXECUTABLES)
