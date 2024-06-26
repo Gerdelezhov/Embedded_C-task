@@ -8,7 +8,7 @@ all: $(EXECUTABLES)
 
 %: %.c
 	clang-format -style="{BasedOnStyle: Google, IndentWidth: 4}" -i $<
-	$(CC) $(CFLAGS) $< -o $@ -lncurses -g3 -O0
+	$(CC) $(CFLAGS) $< -o $@ -lcurses -lpthread
 
 clean:
 	rm -f $(EXECUTABLES)
