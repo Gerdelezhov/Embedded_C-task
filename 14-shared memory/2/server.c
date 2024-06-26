@@ -1,11 +1,11 @@
+#include <errno.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
-#include <signal.h>
-#include <errno.h>
+#include <unistd.h>
 
 #define SHM_SIZE 1024
 #define MAX_CLIENTS 10
@@ -49,13 +49,11 @@ void initialize_chat_room() {
 int main() {
     key_t key = ftok("chatroom", 65);
 
-    // Remove any existing shared memory segment
     shm_id = shmget(key, SHM_SIZE, 0666);
     if (shm_id != -1) {
         shmctl(shm_id, IPC_RMID, NULL);
     }
 
-    // Create a new shared memory segment
     shm_id = shmget(key, SHM_SIZE, IPC_CREAT | 0666);
     if (shm_id == -1) {
         perror("shmget");
@@ -79,7 +77,7 @@ int main() {
     printf("Server is running...\n");
 
     while (1) {
-        sleep(1);  // Server main loop placeholder
+        sleep(1);
     }
 
     return 0;

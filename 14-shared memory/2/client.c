@@ -59,7 +59,7 @@ void sig_winch(int signo) {
     wrefresh(input_win);
 }
 
-void update_user_list();  // Предварительное объявление функции
+void update_user_list();
 
 void *receive_messages(void *arg) {
     int last_msg_count = 0;
@@ -207,7 +207,7 @@ int main() {
 
     login_user(wnd, username);
     register_client(username);
-    update_user_list();  // Initial update of the user list
+    update_user_list();
 
     wprintw(
         chat_win,
@@ -235,8 +235,8 @@ int main() {
             if ('\n' == symbol) {
                 if (index == 0) break;
                 send_message(msg);
-                update_user_list();  // Update the user list after sending a
-                                     // message
+                update_user_list();
+
                 break;
             } else if (symbol >= 32 && symbol < 127) {
                 if (index >= MAX_MSG_LEN) break;
@@ -245,7 +245,7 @@ int main() {
                 index++;
             }
         }
-        wmove(input_win, 0, 0);  // Move cursor back to input field
+        wmove(input_win, 0, 0);
         wrefresh(input_win);
     }
 
