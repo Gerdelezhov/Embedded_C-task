@@ -1,1 +1,0 @@
- 1.c   3.c   command_output.txt  'Задания на битовы операции.pdf'
